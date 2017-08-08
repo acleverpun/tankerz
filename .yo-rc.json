@@ -1,0 +1,12 @@
+{
+  "generator-godot": {
+    "promptValues": {
+      "author": "Ross Hadden",
+      "modules": [
+        "nim"
+      ],
+      "type": "nim"
+    },
+    "name": "tankerz"
+  }
+}

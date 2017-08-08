@@ -1,0 +1,7 @@
+*.import
+/.import
+/_dlls
+/nakefile
+/_godotapi
+nimcache
+.nimcache
