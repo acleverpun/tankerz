@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://entities/building.gd" type="Script" id=1]
+
+[node name="building" type="Polygon2D"]
+
+polygon = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
+uv = PoolVector2Array(  )
+color = Color( 0.523438, 0, 1, 1 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation = 0.0
+invert_enable = false
+invert_border = 100.0
+script = ExtResource( 1 )
+state = "DEFAULT"
+selectedColor = Color( 0, 255, 0, 1 )
+
+[node name="label" type="Label" parent="."]
+
+margin_right = 32.0
+margin_bottom = 32.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+size_flags_horizontal = 1
+size_flags_vertical = 4
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+

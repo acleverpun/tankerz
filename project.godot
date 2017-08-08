@@ -1,8 +1,16 @@
 config_version=3
+
 [application]
+
 config/name="TankerZ"
-config/icon="res://icon.png"
 run/main_scene="res://scenes/arena.tscn"
+config/icon="res://icon.png"
+
+[node]
+
+name_num_separator=3
+name_casing=1
 
 [rendering]
+
 environment/default_environment="res://default_env.tres"
