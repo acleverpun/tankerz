@@ -1,6 +1,6 @@
 version       = "0.0.0"
 author        = "Ross Hadden"
-description   = "tankerz, a Godot game"
+description   = "TankerZ, a Godot game"
 license       = "MIT"
 bin           = @["tankerz"]
 
