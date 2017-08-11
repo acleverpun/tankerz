@@ -23,12 +23,12 @@ gdobj Building of Polygon2D:
     discard selfObj.connect("select", selfObj, "onSelect", newArray())
     discard selfObj.connect("deselect", selfObj, "onDeselect", newArray())
 
-  method onSelect*() {.gdExport, base.} =
+  proc onSelect*() {.gdExport.} =
     print("select")
     state = State.selected
     self.color = defaultColor
 
-  proc onDeselect*() =
+  proc onDeselect*() {.gdExport.} =
     print("deselect")
     state = State.default
     self.color = defaultColor
