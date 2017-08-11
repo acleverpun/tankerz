@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://entities/building.gd" type="Script" id=1]
+[ext_resource path="res://scripts/building.gdns" type="Script" id=1]
 
 [node name="building" type="Polygon2D"]
 
@@ -16,8 +16,6 @@ texture_rotation = 0.0
 invert_enable = false
 invert_border = 100.0
 script = ExtResource( 1 )
-state = "DEFAULT"
-selectedColor = Color( 0, 255, 0, 1 )
 
 [node name="label" type="Label" parent="."]
 

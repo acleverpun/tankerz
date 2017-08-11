@@ -4,7 +4,7 @@ description   = "TankerZ, a Godot game"
 license       = "MIT"
 bin           = @["tankerz"]
 
-requires "godot >= 0.5.0 & < 0.6.0"
+requires "godot >= 0.5.1 & < 0.6.0"
 
 task make, "build":
   const bitsPostfix = when sizeof(int) == 8: "_64" else: "_32"
