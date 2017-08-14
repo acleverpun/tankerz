@@ -33,4 +33,10 @@ gdobj Unit of Polygon2D:
     self.color = defaultColor
 
   proc move*(target: Vector2) {.gdExport.} =
-    print("unit move")
+    path.setLen(0)
+    path.add(self.position)
+
+    var lastPos = self.position
+    while lastPos != target:
+      lastPos = lastPos + grid.toCardinal(target - lastPos) * grid.cellSize
+      path.add(lastPos)
