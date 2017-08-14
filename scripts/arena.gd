@@ -16,28 +16,30 @@ func _process(delta):
 func _unhandled_input(event):
 	if isClick(event):
 		for node in entities.get_children():
-			if not has_user_signal(node, "select"): continue
+			if not node.has_method("select"): continue
 			var rect = (node.get_item_rect().grow(-20))
 			rect.position = node.position
 			if rect.has_point(event.position): return selectNode(node)
-		if selectedNode and has_user_signal(selectedNode, "move"): moveNode(selectedNode, event.position)
+		if selectedNode: moveNode(selectedNode, event.position)
 	elif isClick(event, 2):
 		deselectNode()
 
-func deselectNode():
-	if selectedNode: selectedNode.emit_signal("deselect")
-	selectedNode = null
-
 func selectNode(node):
+	if not node.has_method("select"): return
 	var isSameNode = (node == selectedNode)
 	deselectNode()
 	if isSameNode: return
 	selectedNode = node
-	node.emit_signal("select")
+	node.select()
+
+func deselectNode():
+	if selectedNode and selectedNode.has_method("deselect"): selectedNode.deselect()
+	selectedNode = null
 
 func moveNode(node, newPosition):
+	if not node.has_method("move"): return
 	var alignedPosition =  grid.align(newPosition - grid.cellDim / 2)
-	node.emit_signal("move", alignedPosition)
+	node.move(alignedPosition)
 
 static func isClick(event, button = 1):
 	return (
@@ -45,6 +47,3 @@ static func isClick(event, button = 1):
 		event.button_index == button and
 		event.is_pressed()
 	)
-
-static func has_user_signal(node, signalName):
-	return node.get_signal_connection_list(signalName).size() > 0

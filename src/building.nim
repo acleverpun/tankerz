@@ -15,18 +15,12 @@ gdobj Building of Polygon2D:
     defaultColor = self.color
     getNode("label").as(Label).text = self.getName()
 
-    self.addUserSignal("select", newArray())
-    self.addUserSignal("deselect", newArray())
-
-    discard self.connect("select", self, "on_select", newArray())
-    discard self.connect("deselect", self, "on_deselect", newArray())
-
-  proc onSelect*() {.gdExport.} =
+  proc select*() {.gdExport.} =
     print("select")
     state = State.selected
     self.color = defaultColor
 
-  proc onDeselect*() {.gdExport.} =
+  proc deselect*() {.gdExport.} =
     print("deselect")
     state = State.default
     self.color = defaultColor
