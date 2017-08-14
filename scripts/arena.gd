@@ -38,7 +38,7 @@ func deselectNode():
 
 func moveNode(node, newPosition):
 	if not node.has_method("move"): return
-	var alignedPosition =  grid.align(newPosition - grid.cellDim / 2)
+	var alignedPosition = grid.align(newPosition - grid.cellDim / 2)
 	node.move(alignedPosition)
 
 static func isClick(event, button = 1):

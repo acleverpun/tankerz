@@ -1,5 +1,5 @@
 import godot, node
-import polygon_2d, label
+import label, packed_scene, polygon_2d, resource_loader
 import ./utils/grid as grid
 
 type State {.pure.} = enum
@@ -16,11 +16,16 @@ gdobj Building of Polygon2D:
     getNode("label").as(Label).text = self.getName()
 
   proc select*() {.gdExport.} =
-    print("select")
     state = State.selected
-    self.color = defaultColor
+    self.color = selectedColor
+
+    let Unit = load("res://entities/unit.tscn") as PackedScene
+    var unit = Unit.instance() as Node2d
+    unit.position = self.position + grid.cellDown
+    self.getParent().addChild(unit)
+
+    self.deselect()
 
   proc deselect*() {.gdExport.} =
-    print("deselect")
     state = State.default
     self.color = defaultColor
