@@ -13,15 +13,13 @@ gdobj Building of Polygon2D:
 
   method ready*() =
     defaultColor = self.color
-    cast[Label](getNode("label")).text = self.getName()
+    getNode("label").as(Label).text = self.getName()
 
-    let selfObj = cast[Object](self)
+    self.addUserSignal("select", newArray())
+    self.addUserSignal("deselect", newArray())
 
-    selfObj.addUserSignal("select", newArray())
-    selfObj.addUserSignal("deselect", newArray())
-
-    discard selfObj.connect("select", selfObj, "onSelect", newArray())
-    discard selfObj.connect("deselect", selfObj, "onDeselect", newArray())
+    discard self.connect("select", self, "on_select", newArray())
+    discard self.connect("deselect", self, "on_deselect", newArray())
 
   proc onSelect*() {.gdExport.} =
     print("select")
