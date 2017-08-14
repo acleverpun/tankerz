@@ -9,7 +9,7 @@ const none* = vec2(0, 0)
 
 const cellSize* = 32
 const cellDim* = vec2(32, 32)
-const quarter* = PI / 2
+const quarter*: float64 = PI / 2
 
 var cellUp* = up * cellSize
 var cellDown* = down * cellSize
@@ -20,7 +20,7 @@ proc align*(vec: Vector2): Vector2 =
   return vec.snapped(cellDim)
 
 proc toCardinal*(vec: Vector2): Vector2 =
-  var angle = quarter * round(vec.angle() / quarter)
+  let angle = quarter * round(vec.angle() / quarter)
   case angle
     of 0.0: return right
     of quarter: return down
