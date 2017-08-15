@@ -6,23 +6,27 @@ type State {.pure.} = enum
   default, selected
 
 gdobj Unit of Polygon2D:
-  var state {.gdExport.}: State = State.default
   var selectedColor {.gdExport.} = initColor(0, 255, 0)
-  var nextPos {.gdExport.}: Vector2
   var maxSpeed {.gdExport.} = 4.0
-  var path {.gdExport.} = PoolVector2Array()
 
   var defaultColor: Color
+  var isMoving = false
+  var nextPos: Vector2
+  var path = PoolVector2Array()
+  var state: State = State.default
 
   method ready*() =
     defaultColor = self.color
     getNode("label").as(Label).text = self.getName()
 
   method fixedProcess*(dt: float64) =
-    discard
-    # if not nextPos and path.size():
-    #   nextPos = path[0]
-    #   path.remove(0)
+    if not isMoving and path.len() > 0:
+      nextPos = path[0]
+      path.delete(0)
+      isMoving = true
+    if isMoving:
+      self.position = self.position + (nextPos - self.position).normalized() * maxSpeed
+      if self.position == nextPos: isMoving = false
 
   proc select*() {.gdExport.} =
     state = State.selected
@@ -33,7 +37,7 @@ gdobj Unit of Polygon2D:
     self.color = defaultColor
 
   proc move*(target: Vector2) {.gdExport.} =
-    path.setLen(0)
+    path.setLen(min(path.len(), 1))
     path.add(self.position)
 
     var lastPos = self.position
