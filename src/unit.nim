@@ -1,11 +1,13 @@
 import godot, node
-import polygon_2d, label
+import
+  label,
+  polygon_2d
 import ./utils/grid as grid
 
 type State {.pure.} = enum
   default, selected
 
-gdobj Unit of Polygon2D:
+gdobj Unit of Polygon2d:
   var selectedColor {.gdExport.} = initColor(0, 255, 0)
   var maxSpeed {.gdExport.} = 4.0
 
