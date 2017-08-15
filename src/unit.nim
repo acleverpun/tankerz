@@ -37,10 +37,10 @@ gdobj Unit of Polygon2D:
     self.color = defaultColor
 
   proc move*(target: Vector2) {.gdExport.} =
-    path.setLen(min(path.len(), 1))
     path.add(self.position)
+    path.setLen(1)
 
-    var lastPos = self.position
+    var lastPos = path[0]
     while lastPos != target:
       lastPos = lastPos + grid.toCardinal(target - lastPos) * grid.cellSize
       path.add(lastPos)
