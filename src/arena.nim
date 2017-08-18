@@ -45,7 +45,7 @@ gdobj Arena of Node2d:
         for node in entities.getChildren():
           if not node.hasMethod("select"): continue
 
-          var node2d: Node2d = node.asObject(Polygon2d)
+          var node2d: Node2d = node.asObject(Node2d)
           var rect: Rect2 = node2d.getItemRect().grow(-20)
           rect.position = node2d.position
 

@@ -1,5 +1,6 @@
 import godot, node
 import
+  area_2d,
   label,
   packed_scene,
   polygon_2d,
@@ -9,20 +10,22 @@ import ./utils/grid as grid
 type State {.pure.} = enum
   default, selected
 
-gdobj Building of Polygon2d:
+gdobj Building of Area2d:
   var selectedColor {.gdExport.} = initColor(0, 0, 255)
   var state {.gdExport.}: State = State.default
 
   var Unit = load("res://entities/unit.tscn") as PackedScene
+  var polygon: Polygon2d
   var defaultColor: Color
 
   method ready*() =
-    defaultColor = self.color
+    polygon = self.getNode("polygon") as Polygon2d
+    defaultColor = polygon.color
     getNode("label").as(Label).text = self.getName()
 
   proc select*() {.gdExport.} =
     state = State.selected
-    self.color = selectedColor
+    polygon.color = selectedColor
 
     var unit = Unit.instance() as Node2d
     unit.position = self.position + grid.cellDown
@@ -32,4 +35,4 @@ gdobj Building of Polygon2d:
 
   proc deselect*() {.gdExport.} =
     state = State.default
-    self.color = defaultColor
+    polygon.color = defaultColor

@@ -15,13 +15,9 @@ sort_enabled = true
 [node name="building" parent="entities" instance=ExtResource( 2 )]
 
 position = Vector2( 448, 160 )
-selected_color = Color( 0, 0, 255, 1 )
-state = 0
 
 [node name="building-2" parent="entities" instance=ExtResource( 2 )]
 
 position = Vector2( 128, 160 )
-selected_color = Color( 0, 0, 255, 1 )
-state = 0
 
 
