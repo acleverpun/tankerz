@@ -47,4 +47,11 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
+[node name="collision" type="CollisionPolygon2D" parent="."]
+
+position = Vector2( 16, 16 )
+scale = Vector2( 1.23077, 1.23077 )
+build_mode = 0
+polygon = PoolVector2Array( -13, -13, 13, -13, 13, 13, -13, 13 )
+
 

@@ -1,6 +1,7 @@
 import godot, node
 import
   area_2d,
+  input_event_mouse_button,
   label,
   packed_scene,
   polygon_2d,
@@ -9,6 +10,13 @@ import ./utils/grid as grid
 
 type State {.pure.} = enum
   default, selected
+
+proc isClick(event: InputEventMouseButton, button = 1): bool =
+  return event.buttonIndex() == button and event.pressed()
+
+proc isClick(event: InputEvent, button = 1): bool =
+  if not (event of InputEventMouseButton): return false
+  return isClick(event as InputEventMouseButton, button)
 
 gdobj Building of Area2d:
   var selectedColor {.gdExport.} = initColor(0, 0, 255)
@@ -22,6 +30,10 @@ gdobj Building of Area2d:
     polygon = self.getNode("polygon") as Polygon2d
     defaultColor = polygon.color
     getNode("label").as(Label).text = self.getName()
+
+  method input(event: InputEvent) =
+    if isClick(event):
+      print("click")
 
   proc select*() {.gdExport.} =
     state = State.selected
