@@ -7,7 +7,7 @@ func _ready():
 	selectable.connect("deselect", self, "onDeselect")
 
 func onSelect():
-	print("selected")
+	print("building selected")
 
 func onDeselect():
-	print("deselected")
+	print("building deselected")
