@@ -6,17 +6,21 @@ export var isMoving = false
 
 onready var parent = get_parent()
 onready var selectable = parent.get_node("selectable")
+onready var utils = preload("res://scripts/utils.gd")
 
 func _ready():
 	selectable.connect("select", self, "onSelect")
 	selectable.connect("deselect", self, "onDeselect")
 
-func move():
-	emit_signal("move")
+func move(pos):
+	emit_signal("move", pos)
+	selectable.deselect()
+
+func _unhandled_input(event):
+	if selectable.selected and utils.isClick(event): move(event.get_position())
 
 func onSelect():
 	print("movable selected")
-	move()
 
 func onDeselect():
 	print("movable deselected")
