@@ -1,5 +1,26 @@
-[gd_scene format=2]
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://entities/building.gd" type="Script" id=1]
+[ext_resource path="res://components/selectable.tscn" type="PackedScene" id=2]
 
 [node name="arena" type="Node2D"]
+
+[node name="building" type="Polygon2D" parent="."]
+
+polygon = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
+uv = PoolVector2Array(  )
+color = Color( 0.52, 0, 1, 1 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation = 0.0
+invert_enable = false
+invert_border = 100.0
+script = ExtResource( 1 )
+
+[node name="selectable" parent="building" instance=ExtResource( 2 )]
 
 
