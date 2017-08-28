@@ -7,12 +7,14 @@ export var selected = false
 
 func _input_event(viewport, event, index):
 	if isClick(event): toggle()
-	elif isClick(event, 2): deselect()
+	elif selected and isClick(event, 2): deselect()
 
 func select():
+	selected = true
 	emit_signal("select")
 
 func deselect():
+	selected = false
 	emit_signal("deselect")
 
 func toggle():
