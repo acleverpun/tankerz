@@ -1,24 +1,24 @@
-extends Area2D
+extends Node
 
 signal select
 signal deselect
 
 export var selected = false
 
-onready var utils = preload("res://scripts/utils.gd")
-
-func _input_event(viewport, event, index):
-	if utils.isClick(event): toggle()
-	elif selected and utils.isClick(event, 2): deselect()
+onready var utils = preload('res://scripts/utils.gd')
 
 func select():
-	selected = true
-	emit_signal("select")
+	if not selected:
+		selected = true
+		emit_signal('select')
+	return selected
 
 func deselect():
-	selected = false
-	emit_signal("deselect")
+	if selected:
+		selected = false
+		emit_signal('deselect')
+	return selected
 
 func toggle():
-	if selected == false: select()
-	elif selected == true: deselect()
+	if selected == false: return select()
+	elif selected == true: return deselect()
