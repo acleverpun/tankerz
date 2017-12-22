@@ -11,7 +11,18 @@ config_version=3
 [application]
 
 config/name="TankerZ"
-config/icon="res://icon.png"
+run/main_scene="res://scenes/arena.tscn"
+config/icon="res://assets/icon.png"
+
+[input]
+
+quit=[ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":81,"unicode":0,"echo":false,"script":null)
+ ]
+
+[node]
+
+name_num_separator=3
+name_casing=1
 
 [rendering]
 
