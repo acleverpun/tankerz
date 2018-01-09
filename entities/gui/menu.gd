@@ -1,13 +1,27 @@
 extends Tree
 
-onready var root = create_item()
+signal select
+
+onready var parent = get_parent()
+
+var root
 
 func _ready():
 	set_hide_root(true)
 
-func populate(units):
-	for unit in units:
-		addItem(unit)
+	connect('item_activated', self, 'onDoubleClick')
+	if parent.has_method('onMenuSelect'): connect('select', parent, 'onMenuSelect')
 
-func addItem(unit, column = 0, parent = root):
-	create_item(parent).set_text(column, unit.get_name())
+func populate(entries):
+	clear()
+	root = create_item()
+	for entry in entries:
+		addItem(entry)
+
+func addItem(entry, column = 0, parentItem = root):
+	var item = create_item(parentItem)
+	item.set_text(column, entry.get_name())
+	item.set_metadata(0, entry)
+
+func onDoubleClick():
+	emit_signal('select', get_selected().get_metadata(0))

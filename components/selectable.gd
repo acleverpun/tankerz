@@ -12,8 +12,8 @@ onready var parentColor = parent.color
 
 func _ready():
 	if not selectedColor: selectedColor = parentColor.lightened(0.3)
-	if parent.has_method('onSelect'): self.connect('select', parent, 'onSelect')
-	if parent.has_method('onDeselect'): self.connect('deselect', parent, 'onDeselect')
+	if parent.has_method('onSelect'): connect('select', parent, 'onSelect')
+	if parent.has_method('onDeselect'): connect('deselect', parent, 'onDeselect')
 
 func select():
 	if not selected:
@@ -31,7 +31,5 @@ func deselect():
 	return selected
 
 func toggle():
-	if selected == true:
-		return deselect()
-	else:
-		return select()
+	if selected == true: return deselect()
+	else: return select()
