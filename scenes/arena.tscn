@@ -7,6 +7,7 @@
 [node name="arena" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
+modeName = null
 
 [node name="building" parent="." index="0" instance=ExtResource( 2 )]
 

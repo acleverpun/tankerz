@@ -6,7 +6,8 @@ signal deselect
 export var selected = false
 export(Color) var selectedColor
 
-onready var utils = preload('res://scripts/utils.gd')
+var utils = preload('res://scripts/utils.gd')
+
 onready var parent = get_parent()
 onready var parentColor = parent.color
 

@@ -1,25 +1,39 @@
 extends Node2D
 
-onready var utils = preload('res://scripts/utils.gd')
+var utils = preload('res://scripts/utils.gd')
 
-var selected
+enum ModeName { SELECT, MOVE, MARKET, INTROSPECT }
+
+export(ModeName) var modeName
+
+onready var modes = {
+	'select': load('res://modes/select.gd'),
+	'move': load('res://modes/move.gd'),
+	'market': load('res://modes/market.gd'),
+	'introspect': load('res://modes/introspect.gd')
+}
+
+signal click
+signal altClick
+
+var mode
+
+func _ready():
+	switchMode(ModeName.SELECT)
+
+func switchMode(name):
+	match name:
+		SELECT: mode = modes.select
+		MOVE: mode = modes.move
+		MARKET: mode = modes.market
+		INTROSPECT: mode = modes.introspect
+	modeName = name
+	mode = mode.new()
+
+	if mode.has_method('onClick'): connect('click', mode, 'onClick')
+	if mode.has_method('onAltClick'): connect('altClick', mode, 'onAltClick')
 
 func _input(event):
-	if utils.isClick(event):
-		var point = event.get_position()
-		var nodes = get_children()
-
-		for node in nodes:
-			if not node.has_node('selectable'): break
-
-			if utils.hasPoint(node, point):
-				if selected == node: return
-				if selected: selected.get_node('selectable').deselect()
-				if node.get_node('selectable').toggle():
-					selected = node
-				break
-	elif utils.isClick(event, 2):
-		if selected: selected.get_node('selectable').deselect()
-		selected = null
-	elif Input.is_action_just_pressed('quit'):
-		get_tree().quit()
+	if utils.isClick(event): emit_signal('click', event.get_position(), self)
+	elif utils.isClick(event, 2): emit_signal('altClick', event.get_position(), self)
+	elif Input.is_action_just_pressed('quit'): get_tree().quit()

@@ -1,6 +1,7 @@
 extends Polygon2D
 
-onready var Menu = load('res://entities/gui/menu.tscn')
+var Menu = load('res://entities/gui/menu.tscn')
+
 onready var menu = Menu.instance()
 onready var parent = get_parent()
 onready var units = $units.get_children()
