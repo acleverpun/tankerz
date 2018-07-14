@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://src/entities/building.gd" type="Script" id=1]
+[ext_resource path="res://src/entities/factory.gd" type="Script" id=1]
 [ext_resource path="res://src/components/selectable.tscn" type="PackedScene" id=2]
 
-[node name="building" type="Polygon2D"]
+[node name="factory" type="Polygon2D"]
 polygon = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 uv = PoolVector2Array(  )
 splits = PoolIntArray(  )
