@@ -22,6 +22,10 @@ func _ready():
 	switchMode(ModeName.SELECT)
 
 func switchMode(name):
+	if mode:
+		if mode.has_method('onClick'): disconnect('click', mode, 'onClick')
+		if mode.has_method('onAltClick'): disconnect('altClick', mode, 'onAltClick')
+
 	match name:
 		SELECT: mode = modes.select
 		MOVE: mode = modes.move
