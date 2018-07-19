@@ -3,7 +3,7 @@
 [ext_resource path="res://src/entities/factory.gd" type="Script" id=1]
 [ext_resource path="res://src/components/selectable.tscn" type="PackedScene" id=2]
 
-[node name="factory" type="Polygon2D"]
+[node name="factory" type="Polygon2D" index="0"]
 polygon = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 uv = PoolVector2Array(  )
 splits = PoolIntArray(  )
@@ -20,6 +20,8 @@ invert_enable = false
 invert_border = 100.0
 bones = [  ]
 script = ExtResource( 1 )
+_sections_unfolded = [ "script" ]
 
 [node name="selectable" parent="." index="0" instance=ExtResource( 2 )]
+selected = false
 

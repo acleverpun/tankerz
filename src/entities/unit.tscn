@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/entities/unit.gd" type="Script" id=1]
+
+[node name="unit" type="Polygon2D" index="0"]
+polygon = PoolVector2Array( 0, 16, 8, 0, 16, 16 )
+uv = PoolVector2Array(  )
+splits = PoolIntArray(  )
+color = Color( 0.278431, 0.882353, 0.243137, 1 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+skeleton = NodePath("")
+invert_enable = false
+invert_border = 100.0
+bones = [  ]
+script = ExtResource( 1 )
+
